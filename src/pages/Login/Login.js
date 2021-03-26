@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Logo from "../../assets/logo.png";
 
 import "./styles.css";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const history = useHistory();
@@ -20,11 +21,6 @@ export default function Login() {
   async function handleLogin(e) {
     e.preventDefault();
     setLoading(true);
-    if (email === null || password === null) {
-      setLoading(false);
-      toast.error("Os campos não podem ser vazios");
-      return;
-    }
     try {
       const response = await api.post("api/patient/auth/", { email, password });
       if (response.data.authenticated === false) {
@@ -44,6 +40,7 @@ export default function Login() {
     <>
       <div className="main">
         <form
+          onSubmit={handleLogin}
           style={{
             backgroundColor: "white",
             padding: "30px",
@@ -53,30 +50,34 @@ export default function Login() {
           className="col-lg-4"
         >
           <img src={Logo} alt="Logo Unitpac" className="img-fluid mb-2" />
-          <div className="mb-3">
-            <label htmlFor="inputEmail" className="form-label">
-              Email
-            </label>
+          <div className="form-floating mt-3">
             <input
+              autoComplete="off"
+              required
+              placeholder="exemplo@email.com"
               id="inputEmail"
-              type="text"
+              type="email"
               className="form-control"
               onChange={(e) => setEmail(e.target.value)}
             />
+            <label htmlFor="inputEmail">Email</label>
           </div>
-          <div className="mb-3">
-            <label htmlFor="inputPassword" className="form-label">
-              Senha
-            </label>
+          <div className="form-floating mt-3 mb-3">
             <input
+              required
               id="inputPassword"
               type="password"
               className="form-control"
+              placeholder="Digite sua senha"
               onChange={(e) => setPassword(e.target.value)}
             />
+            <label htmlFor="inputPassword">Senha</label>
           </div>
 
           <div>
+            <p className="text-center">
+              Não tem uma conta? Crie uma <Link to="/signup">aqui!</Link>
+            </p>
             {loading ? (
               <button className="btn btn-primary col-12" type="button" disabled>
                 <span
@@ -87,7 +88,7 @@ export default function Login() {
                 Entrando...
               </button>
             ) : (
-              <button onClick={handleLogin} className="btn btn-primary col-12">
+              <button type="submit" className="btn btn-primary col-12">
                 Entrar
               </button>
             )}
