@@ -1,7 +1,5 @@
-import logo from "./logo.svg";
+import React from "react";
+import Routes from "./Routes";
 
-function App() {
-  return <h1>Hello World!</h1>;
-}
-
+const App = () => <Routes />;
 export default App;
