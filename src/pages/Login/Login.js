@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import api from "../../services/api";
-import { login } from "../../services/auth";
+
+import AuthContext from "../../contexts/auth/AuthContext";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,9 +11,9 @@ import "react-toastify/dist/ReactToastify.css";
 import Logo from "../../assets/logo.png";
 
 import "./styles.css";
-import { Link } from "react-router-dom";
 
 export default function Login() {
+  const { setToken } = useContext(AuthContext);
   const history = useHistory();
 
   const [email, setEmail] = useState(null);
@@ -22,18 +24,20 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await api.post("api/patient/auth/", { email, password });
-      if (response.data.authenticated === false) {
+      const { data } = await api.post("api/patient/auth/", { email, password });
+      console.log(data);
+      if (data.authenticated === false) {
         toast.error("Email ou senha inválidos!");
         setLoading(false);
         return;
       }
-      login(response.data.accessToken);
+
+      setToken(data.accessToken);
+      setLoading(false);
+      history.push("/dashboard/scheduling");
     } catch (e) {
       toast.error(e);
     }
-    setLoading(false);
-    history.push("/app");
   }
 
   return (

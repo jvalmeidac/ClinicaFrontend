@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { CepInput, CpfInput, PhoneInput } from "../../Masks/InputMasks";
+import { CepInput, CpfInput, PhoneInput } from "../../masks/InputMasks";
 import api from "../../services/api";
+import cepApi from "../../services/cepApi";
 
 import "./styles.css";
 export default function Register() {
@@ -29,7 +30,7 @@ export default function Register() {
     e.preventDefault();
     setLoading(true);
     try {
-      const { result } = await api.post("api/patient/", {
+      const { data } = await api.post("api/patient/", {
         firstName,
         lastName,
         email,
@@ -40,8 +41,8 @@ export default function Register() {
         rg,
       });
       setLoading(false);
-      if (!result.success) {
-        toast.error("Ocorreu um erro inesperado!");
+      if (!data.result.success) {
+        toast.error(data.result.notifications[0].message);
         return;
       }
       <Redirect to="/app" />;
@@ -50,19 +51,19 @@ export default function Register() {
     }
   }
 
-  //   useEffect(() => {
-  //     async function fetchData() {
-  //       const { data } = await cepApi.get(`${cep}/json`);
-  //       setDistrict(data.bairro);
-  //       setCity(data.localidade);
-  //       setAddress(data.logradouro);
-  //       setComplement(data.complemento);
-  //       console.log(data);
-  //     }
-  //     setTimeout(() => {
-  //       if (cep !== null) fetchData();
-  //     }, 2000);
-  //   }, [cep]);
+  useEffect(() => {
+    async function Get() {
+      try {
+        const { data } = await cepApi.get(`${cep}.json`);
+        setAddress(data.address);
+        setCity(data.city);
+        setDistrict(data.district);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    if (cep.length === 9) Get();
+  }, [cep]);
 
   return (
     <>
@@ -216,6 +217,7 @@ export default function Register() {
                   id="inputAddress"
                   type="text"
                   onChange={(e) => setAddress(e.target.value)}
+                  value={address}
                   className="form-control"
                 />
                 <label
@@ -235,6 +237,7 @@ export default function Register() {
                   id="inputDisctrict"
                   type="text"
                   onChange={(e) => setDistrict(e.target.value)}
+                  value={district}
                   className="form-control"
                 />
                 <label
@@ -251,7 +254,8 @@ export default function Register() {
                   placeholder="Cidade"
                   id="inputCity"
                   type="text"
-                  onChange={(e) => setCity(e.target.value)}
+                  value={city}
+                  readOnly
                   className="form-control"
                 />
                 <label style={{ padding: "1rem 1.5rem" }} htmlFor="inputCity">

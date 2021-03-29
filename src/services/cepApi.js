@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const cepApi = axios.create({
-  baseURL: "https://viacep.com.br/ws/",
+  baseURL: "https://ws.apicep.com/cep/",
 });
 
 export default cepApi;

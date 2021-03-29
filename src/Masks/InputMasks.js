@@ -42,7 +42,12 @@ export const CpfInput = (props) => (
 );
 
 export const CepInput = (props) => (
-  <InputMask mask="99999-999" value={props.value} onChange={props.onChange}>
+  <InputMask
+    mask="99999-999"
+    maskChar={null}
+    value={props.value}
+    onChange={props.onChange}
+  >
     {(inputProps) => (
       <input
         {...inputProps}
