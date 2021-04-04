@@ -1,7 +1,8 @@
 import axios from "axios";
+require("dotenv").config();
 
 const api = axios.create({
-  baseURL: "https://localhost:44319/api/",
+  baseURL: "http://clinicafranscicoesteves.sa-east-1.elasticbeanstalk.com/api/",
 });
 
 api.interceptors.request.use(async (response) => {

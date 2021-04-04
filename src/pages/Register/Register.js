@@ -162,6 +162,7 @@ export default function Register() {
                   id="inputCpf"
                   type="text"
                   className="form-control"
+                  onChange={(e) => setCpf(e.target.value)}
                 />
                 <label style={{ padding: "1rem 1.5rem" }} htmlFor="inputCpf">
                   CPF
@@ -191,6 +192,7 @@ export default function Register() {
                   id="inputPhone"
                   type="text"
                   className="form-control"
+                  onChange={(e) => setPhone(e.target.value)}
                 />
                 <label style={{ padding: "1rem 1.5rem" }} htmlFor="inputPhone">
                   Telefone
@@ -223,6 +225,7 @@ export default function Register() {
                   placeholder="CEP"
                   id="inputCep"
                   className="form-control"
+                  onChange={(e) => setCep(e.target.value)}
                 />
                 <label style={{ padding: "1rem 1.5rem" }} htmlFor="inputCep">
                   CEP
