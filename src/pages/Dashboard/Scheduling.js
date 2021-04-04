@@ -58,7 +58,7 @@ export default function Scheduling() {
     }
   }, [decodedToken]);
 
-  async function handleSchedulign(e) {
+  async function handleScheduling(e) {
     e.preventDefault();
 
     const schedule = new Date(`${date}T${time}Z`).toJSON();
@@ -87,6 +87,7 @@ export default function Scheduling() {
             alignItems: "center",
             width: "100vw",
             height: "300px",
+            boxSizing: "border-box",
           }}
         >
           <ClipLoader size={150} />
@@ -94,10 +95,16 @@ export default function Scheduling() {
       ) : (
         <section id="appointments" className="container mt-3">
           <div className="row">
-            <legend>Consultas</legend>
-            <div className="col-lg-8">
+            <div className="col-lg-4">
+              <h4>Bem Vindo(a)</h4>
+              <button className="btn btn-primary" onClick={openModal}>
+                Agendar Consulta
+              </button>
+            </div>
+            <div className="col-lg-8 col-12 shadow rounded">
+              <legend>Consultas</legend>
               {appointments.length > 0 ? (
-                <table className="table table-bordered border-primary table-hover">
+                <table className="col-12 table table-bordered border-primary table-hover">
                   <thead>
                     <tr className="text-center">
                       <th scope="col">Agendamento</th>
@@ -136,12 +143,6 @@ export default function Scheduling() {
                 <p>Nenhuma consulta agendada</p>
               )}
             </div>
-            <div className="col-lg-4 text-center">
-              <h4>Bem Vindo(a)</h4>
-              <button className="btn btn-primary" onClick={openModal}>
-                Agendar Consulta
-              </button>
-            </div>
           </div>
         </section>
       )}
@@ -161,7 +162,7 @@ export default function Scheduling() {
             </button>
           </div>
         </div>
-        <form onSubmit={handleSchedulign}>
+        <form onSubmit={handleScheduling}>
           <div className="form-floating mt-3 mb-3">
             <input
               className="form-control"

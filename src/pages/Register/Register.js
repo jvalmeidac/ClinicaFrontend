@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { CepInput, CpfInput, PhoneInput } from "../../masks/InputMasks";
+import { CepInput, PhoneInput, CpfInput } from "../../masks/InputMasks";
 import api from "../../services/api";
 import cepApi from "../../services/cepApi";
 
