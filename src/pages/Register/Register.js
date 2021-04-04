@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { CepInput, PhoneInput, CpfInput } from "../../masks/InputMasks";
 import api from "../../services/api";
 import cepApi from "../../services/cepApi";
 
@@ -156,7 +155,14 @@ export default function Register() {
             </div>
             <div className="row mb-lg-1 mb-sm-3">
               <div className="col-lg-6 form-floating mb-sm-3">
-                <CpfInput onChange={(e) => setCpf(e.target.value)} />
+                <input
+                  autoComplete="off"
+                  required
+                  placeholder="Digite seu CPF"
+                  id="inputCpf"
+                  type="text"
+                  className="form-control"
+                />
                 <label style={{ padding: "1rem 1.5rem" }} htmlFor="inputCpf">
                   CPF
                 </label>
@@ -178,7 +184,14 @@ export default function Register() {
             </div>
             <div className="row mb-lg-1 mb-sm-3">
               <div className="col-lg-6 form-floating mb-sm-3">
-                <PhoneInput onChange={(e) => setPhone(e.target.value)} />
+                <input
+                  autoComplete="off"
+                  required
+                  placeholder="Digite seu telefone"
+                  id="inputPhone"
+                  type="text"
+                  className="form-control"
+                />
                 <label style={{ padding: "1rem 1.5rem" }} htmlFor="inputPhone">
                   Telefone
                 </label>
@@ -204,7 +217,13 @@ export default function Register() {
             <legend>Endereço</legend>
             <div className="row mb-lg-1 mb-sm-3">
               <div className="col-lg-6 form-floating mb-sm-3">
-                <CepInput onChange={(e) => setCep(e.target.value)} />
+                <input
+                  autoComplete="off"
+                  required
+                  placeholder="CEP"
+                  id="inputCep"
+                  className="form-control"
+                />
                 <label style={{ padding: "1rem 1.5rem" }} htmlFor="inputCep">
                   CEP
                 </label>
