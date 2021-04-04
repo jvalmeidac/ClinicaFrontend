@@ -28,9 +28,9 @@ export default function Register() {
 
   async function handleRegister(e) {
     e.preventDefault();
-    setLoading(true);
     try {
-      const { data } = await api.post("api/patient/", {
+      setLoading(true);
+      const { data } = await api.post("patient/", {
         firstName,
         lastName,
         email,

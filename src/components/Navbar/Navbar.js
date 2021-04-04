@@ -11,7 +11,7 @@ export default function Navbar(props) {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container-fluid">
+        <div className="container-fluid text-center">
           <button
             className="navbar-toggler float-start"
             type="button"
@@ -23,7 +23,7 @@ export default function Navbar(props) {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <a className="navbar-brand" href="/dashboard/scheduling">
+          <a className="navbar-brand float-center" href="/dashboard/scheduling">
             <img
               src={Tooth}
               alt="Dente"
@@ -49,7 +49,7 @@ export default function Navbar(props) {
                   className="navbar__link"
                   to="/dashboard/scheduling"
                 >
-                  Agendamentos
+                  Agendamento
                 </NavLink>
               </li>
               <li className="nav-item">
