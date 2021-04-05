@@ -70,19 +70,17 @@ export default function Register() {
         <form
           onSubmit={handleRegister}
           style={{
-            margin: "30px 0 30px",
             backgroundColor: "white",
             backgroundSize: "cover",
-            padding: "30px",
-            borderRadius: "8px",
+            // borderRadius: "8px",
             boxShadow: "2px 2px 2px 1px rgba(0, 0, 0, 0.2)",
           }}
-          className="col-lg-8"
+          className="col-lg-8 m-3 p-3 rounded"
         >
           <fieldset className="container" id="accountDetails">
             <legend>Detalhes da conta</legend>
-            <div className="row mb-lg-1 mb-sm-3">
-              <div className="col-lg-6 form-floating mb-sm-3">
+            <div className="row">
+              <div className="col-lg-6 form-floating mb-3">
                 <input
                   autoComplete="off"
                   required
@@ -96,7 +94,7 @@ export default function Register() {
                   Email
                 </label>
               </div>
-              <div className="col-lg-6 form-floating">
+              <div className="col-lg-6 form-floating mb-3">
                 <input
                   autoComplete="off"
                   required
@@ -117,8 +115,8 @@ export default function Register() {
           </fieldset>
           <fieldset className="container" id="personalData">
             <legend>Dados Pessoais</legend>
-            <div className="row mb-lg-1 mb-sm-3">
-              <div className="col-lg-6 form-floating mb-sm-3">
+            <div className="row">
+              <div className="col-lg-6 form-floating mb-3">
                 <input
                   autoComplete="off"
                   required
@@ -135,7 +133,7 @@ export default function Register() {
                   Nome
                 </label>
               </div>
-              <div className="col-lg-6 form-floating">
+              <div className="col-lg-6 form-floating mb-3">
                 <input
                   autoComplete="off"
                   required
@@ -153,8 +151,8 @@ export default function Register() {
                 </label>
               </div>
             </div>
-            <div className="row mb-lg-1 mb-sm-3">
-              <div className="col-lg-6 form-floating mb-sm-3">
+            <div className="row">
+              <div className="col-lg-6 form-floating mb-3">
                 <input
                   autoComplete="off"
                   required
@@ -168,7 +166,7 @@ export default function Register() {
                   CPF
                 </label>
               </div>
-              <div className="col-lg-6 form-floating">
+              <div className="col-lg-6 form-floating mb-3">
                 <input
                   autoComplete="off"
                   required
@@ -183,8 +181,8 @@ export default function Register() {
                 </label>
               </div>
             </div>
-            <div className="row mb-lg-1 mb-sm-3">
-              <div className="col-lg-6 form-floating mb-sm-3">
+            <div className="row">
+              <div className="col-lg-6 form-floating mb-3">
                 <input
                   autoComplete="off"
                   required
@@ -198,7 +196,7 @@ export default function Register() {
                   Telefone
                 </label>
               </div>
-              <div className="col-lg-6 form-floating">
+              <div className="col-lg-6 form-floating mb-3">
                 <input
                   required
                   type="date"
@@ -217,8 +215,8 @@ export default function Register() {
           </fieldset>
           <fieldset className="container" id="addressData">
             <legend>Endereço</legend>
-            <div className="row mb-lg-1 mb-sm-3">
-              <div className="col-lg-6 form-floating mb-sm-3">
+            <div className="row">
+              <div className="col-lg-6 form-floating mb-3">
                 <input
                   autoComplete="off"
                   required
@@ -231,7 +229,7 @@ export default function Register() {
                   CEP
                 </label>
               </div>
-              <div className="col-lg-6 form-floating">
+              <div className="col-lg-6 form-floating mb-3">
                 <input
                   autoComplete="off"
                   required
@@ -250,8 +248,8 @@ export default function Register() {
                 </label>
               </div>
             </div>
-            <div className="row mb-lg-1 mb-sm-3">
-              <div className="col-lg-6 form-floating mb-sm-3">
+            <div className="row">
+              <div className="col-lg-6 form-floating mb-3">
                 <input
                   autoComplete="off"
                   required
@@ -269,7 +267,7 @@ export default function Register() {
                   Bairro
                 </label>
               </div>
-              <div className="col-lg-6 form-floating">
+              <div className="col-lg-6 form-floating mb-3">
                 <input
                   autoComplete="off"
                   required
@@ -278,6 +276,7 @@ export default function Register() {
                   type="text"
                   value={city}
                   readOnly
+                  disabled
                   className="form-control"
                 />
                 <label style={{ padding: "1rem 1.5rem" }} htmlFor="inputCity">
@@ -285,8 +284,8 @@ export default function Register() {
                 </label>
               </div>
             </div>
-            <div className="row mb-lg-1 mb-sm-3">
-              <div className="col-lg-6 form-floating mb-sm-3">
+            <div className="row">
+              <div className="col-lg-6 form-floating mb-3">
                 <input
                   autoComplete="off"
                   placeholder="Complemento"

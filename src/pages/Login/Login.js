@@ -46,11 +46,10 @@ export default function Login() {
           onSubmit={handleLogin}
           style={{
             backgroundColor: "white",
-            padding: "30px",
             borderRadius: "8px",
             boxShadow: "2px 2px 2px 1px rgba(0, 0, 0, 0.2)",
           }}
-          className="col-lg-4"
+          className="col-lg-4 col-md-6 m-3 p-3"
         >
           <img src={Logo} alt="Logo Unitpac" className="img-fluid mb-2" />
           <div className="form-floating mt-3">

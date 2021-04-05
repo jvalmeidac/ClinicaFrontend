@@ -49,7 +49,6 @@ export default function Scheduling() {
         const { data } = await api.get(
           `appointment/${decodedToken.unique_name}`
         );
-        console.log(data);
         setAppointments(data.data);
         setLoading(false);
       } catch (e) {
@@ -94,8 +93,8 @@ export default function Scheduling() {
         </div>
       ) : (
         <section id="appointments" className="container mt-3">
-          <div className="row">
-            <div className="col-lg-4">
+          <div className="row m-1">
+            <div className="col-lg-4 mb-3">
               <h4>Bem Vindo(a)</h4>
               <button className="btn btn-primary" onClick={openModal}>
                 Agendar Consulta
@@ -104,41 +103,43 @@ export default function Scheduling() {
             <div className="col-lg-8 col-12 shadow rounded">
               <legend>Consultas</legend>
               {appointments.length > 0 ? (
-                <table className="col-12 table table-bordered border-primary table-hover">
-                  <thead>
-                    <tr className="text-center">
-                      <th scope="col">Agendamento</th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Descrição</th>
-                      <th scope="col">Acadêmico</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {appointments.map((appointment) => {
-                      const schedule = new Date(appointment.schedule);
-                      const scheduleDate = schedule.toLocaleDateString();
-                      const scheduleTime = schedule.toLocaleTimeString();
+                <div style={{ overflowX: "auto", whiteSpace: "nowrap" }}>
+                  <table className="col-12 table table-bordered border-primary table-hover">
+                    <thead>
+                      <tr className="text-center">
+                        <th scope="col">Agendamento</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Acadêmico</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {appointments.map((appointment) => {
+                        const schedule = new Date(appointment.schedule);
+                        const scheduleDate = schedule.toLocaleDateString();
+                        const scheduleTime = schedule.toLocaleTimeString();
 
-                      return (
-                        <tr
-                          key={appointment.appointmentId}
-                          className="text-center"
-                        >
-                          <td>{scheduleDate + " - " + scheduleTime}</td>
-                          <td>
-                            <StatusBadge
-                              status={appointment.appointmentStatus}
-                            />
-                          </td>
-                          <td>{appointment.description}</td>
-                          <td>
-                            {appointment.operator || "Aguardando dados..."}
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
+                        return (
+                          <tr
+                            key={appointment.appointmentId}
+                            className="text-center"
+                          >
+                            <td>{scheduleDate + " - " + scheduleTime}</td>
+                            <td>
+                              <StatusBadge
+                                status={appointment.appointmentStatus}
+                              />
+                            </td>
+                            <td>{appointment.description}</td>
+                            <td>
+                              {appointment.operator || "Aguardando dados..."}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
               ) : (
                 <p>Nenhuma consulta agendada</p>
               )}
