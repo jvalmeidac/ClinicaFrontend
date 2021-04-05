@@ -2,7 +2,7 @@ import axios from "axios";
 require("dotenv").config();
 
 const api = axios.create({
-  baseURL: "http://clinicafranscicoesteves.sa-east-1.elasticbeanstalk.com/api/",
+  baseURL: "https://clinicafranscicoesteves.azurewebsites.net/api/",
 });
 
 api.interceptors.request.use(async (response) => {
