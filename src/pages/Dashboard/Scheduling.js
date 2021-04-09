@@ -94,7 +94,7 @@ export default function Scheduling() {
       ) : (
         <section id="appointments" className="container mt-3">
           <div className="row m-1">
-            <div className="col-lg-4 mb-3">
+            <div className="col-lg-4 mb-3 text-center">
               <h4>Bem Vindo(a)</h4>
               <button className="btn btn-primary" onClick={openModal}>
                 Agendar Consulta
@@ -153,11 +153,11 @@ export default function Scheduling() {
         contentLabel="Example Modal"
         style={customStyles}
       >
-        <div className="row">
+        <div className="d-flex justify-content-between">
           <div className="col-10">
             <h2>Preencha os dados</h2>
           </div>
-          <div className="col-2">
+          <div className="col-2 text-center">
             <button className="btn btn-outline-danger" onClick={closeModal}>
               <i className="bi bi-x"></i>
             </button>

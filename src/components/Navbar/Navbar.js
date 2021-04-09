@@ -11,7 +11,7 @@ export default function Navbar(props) {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container-fluid text-center">
+        <div className="container-fluid d-flex justify-content-between">
           <button
             className="navbar-toggler float-start"
             type="button"

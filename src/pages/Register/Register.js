@@ -61,7 +61,7 @@ export default function Register() {
         console.log(e);
       }
     }
-    if (cep.length === 9) Get();
+    if (cep.length === 8) Get();
   }, [cep]);
 
   return (
@@ -309,7 +309,7 @@ export default function Register() {
             </p>
             {loading ? (
               <button
-                className="btn btn-primary col-lg-6"
+                className="btn btn-primary col-lg-6 col-12 align-middle"
                 type="button"
                 disabled
               >
@@ -321,7 +321,7 @@ export default function Register() {
                 Carregando...
               </button>
             ) : (
-              <button type="submit" className="btn btn-primary col-lg-6">
+              <button type="submit" className="btn btn-primary col-lg-6 col-12">
                 Cadastrar
               </button>
             )}

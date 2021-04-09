@@ -81,7 +81,11 @@ export default function Login() {
               Não tem uma conta? Crie uma <Link to="/signup">aqui!</Link>
             </p>
             {loading ? (
-              <button className="btn btn-primary col-12" type="button" disabled>
+              <button
+                className="btn btn-primary col-12 align-middle"
+                type="button"
+                disabled
+              >
                 <span
                   className="spinner-border spinner-border-sm"
                   role="status"
