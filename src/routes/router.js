@@ -1,16 +1,19 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import PrivateRoute from "./private";
 
+//Páginas
 import Account from "../pages/Dashboard/Account";
 import Scheduling from "../pages/Dashboard/Scheduling";
-import Login from "../pages/Login/Login";
-import Register from "../pages/Register/Register";
-import PrivateRoute from "./private";
+import Login from "../pages/Login";
+import Menu from "../pages/Menu";
+import Register from "../pages/Register";
 
 const Routes = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={() => <Login />} />
+      <Route exact path="/" component={() => <Menu />} />
+      <Route path="/login/" component={() => <Login />} />
       <Route path="/signup/" component={() => <Register />} />
       <PrivateRoute
         path="/dashboard/scheduling"

@@ -223,6 +223,7 @@ export default function Register() {
                   placeholder="CEP"
                   id="inputCep"
                   className="form-control"
+                  maxLength="8"
                   onChange={(e) => setCep(e.target.value)}
                 />
                 <label style={{ padding: "1rem 1.5rem" }} htmlFor="inputCep">
@@ -305,7 +306,7 @@ export default function Register() {
           </fieldset>
           <div className="mt-3 text-center">
             <p>
-              Já possui uma conta? <Link to="/">Fazer login</Link>
+              Já possui uma conta? <Link to="/login">Fazer login</Link>
             </p>
             {loading ? (
               <button

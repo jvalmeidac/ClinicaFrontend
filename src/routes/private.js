@@ -10,7 +10,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={() =>
-        token && !isExpired ? <Component {...rest} /> : <Redirect to="/" />
+        token && !isExpired ? <Component {...rest} /> : <Redirect to="/login" />
       }
     />
   );

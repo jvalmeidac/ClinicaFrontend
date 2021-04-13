@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
-import Navbar from "../../components/Navbar/Navbar";
+import Navbar from "../../../components/Navbar";
 import ClipLoader from "react-spinners/ClipLoader";
 
-import User from "../../assets/user.svg";
-import AuthContext from "../../contexts/auth/AuthContext";
-import api from "../../services/api";
+import User from "../../../assets/user.svg";
+import AuthContext from "../../../contexts/auth/AuthContext";
+import api from "../../../services/api";
 
 export default function Account() {
   const { decodedToken } = useContext(AuthContext);

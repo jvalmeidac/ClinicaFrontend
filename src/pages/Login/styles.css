@@ -11,8 +11,3 @@ div.main {
     rgba(255, 0, 0, 1)
   );
 }
-
-div.container {
-  width: 300px;
-  height: auto;
-}
