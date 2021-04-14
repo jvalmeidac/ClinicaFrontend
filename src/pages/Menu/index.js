@@ -11,7 +11,7 @@ export default function Menu() {
         <div className="row">
           <div
             style={{ backgroundColor: "white" }}
-            className="col-lg col-12 rounded shadow m-lg-3 mb-3 p-3 text-center"
+            className="col-lg col-12 rounded shadow m-lg-3 m-3 p-3 text-center"
           >
             <Link
               to="/dashboard/scheduling"
@@ -29,7 +29,7 @@ export default function Menu() {
           </div>
           <div
             style={{ backgroundColor: "white" }}
-            className="col-lg col-12 rounded shadow m-lg-3 mb-3 p-3 text-center"
+            className="col-lg col-12 rounded shadow m-lg-3 m-3 p-3 text-center"
           >
             <Link
               to="/"

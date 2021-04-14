@@ -15,6 +15,7 @@ export default function Register() {
   const [rg, setRg] = useState("");
   const [birthDate, setBirthDate] = useState("");
   const [phone, setPhone] = useState("");
+  const [gender, setGender] = useState("NI");
 
   //Address Data
   const [cep, setCep] = useState("");
@@ -49,7 +50,7 @@ export default function Register() {
       alert(e);
     }
   }
-
+  console.log(gender);
   useEffect(() => {
     async function Get() {
       try {
@@ -209,6 +210,29 @@ export default function Register() {
                   htmlFor="inputBirthDate"
                 >
                   Data de Nascimento
+                </label>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-lg-6 form-floating mb-3">
+                <select
+                  required
+                  onChange={(e) => setGender(e.target.value)}
+                  defaultValue={gender}
+                  className="form-select"
+                  name="gender"
+                  id="genderSelect"
+                >
+                  <option>Selecione uma das opções</option>
+                  <option value="M">Masculino</option>
+                  <option value="F">Feminino</option>
+                  <option value="NI">Prefiro não identificar</option>
+                </select>
+                <label
+                  style={{ padding: "1rem 1.5rem" }}
+                  htmlFor="genderSelect"
+                >
+                  Sexo
                 </label>
               </div>
             </div>
