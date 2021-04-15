@@ -45,7 +45,7 @@ export default function Register() {
         toast.error(data.result.notifications[0].message);
         return;
       }
-      <Redirect to="/app" />;
+      <Redirect to="/login" />;
     } catch (e) {
       alert(e);
     }

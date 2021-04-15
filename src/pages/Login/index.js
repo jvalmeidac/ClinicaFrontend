@@ -25,7 +25,6 @@ export default function Login() {
     setLoading(true);
     try {
       const { data } = await api.post("patient/auth/", { email, password });
-      console.log(data);
       if (data.authenticated === false) {
         toast.error("Email ou senha inválidos!");
         setLoading(false);

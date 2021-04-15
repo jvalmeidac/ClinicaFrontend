@@ -2,6 +2,7 @@ import React, { useContext, useCallback, useEffect, useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import Modal from "react-modal";
 import Swal from "sweetalert2";
+import { ToastContainer, toast } from "react-toastify";
 
 import AuthContext from "../../../contexts/auth/AuthContext";
 
@@ -64,15 +65,24 @@ export default function Scheduling() {
       }
     }
   }, [decodedToken, currentPage]);
+
   async function handleScheduling(e) {
     e.preventDefault();
 
     const schedule = new Date(`${date}T${time}Z`).toJSON();
-    await api.post("appointment/", {
-      schedule,
-      patientId: decodedToken.unique_name,
-      appointmentType: 2,
-    });
+    try {
+      const { data } = await api.post("appointment/", {
+        schedule,
+        patientId: decodedToken.unique_name,
+        appointmentType: 2,
+      });
+      if (!data.success) {
+        toast.error(`Erro: ${data.notifications[0].message}`);
+        return;
+      }
+    } catch (e) {
+      window.alert(e);
+    }
     closeModal();
     Swal.fire("Sucesso", "Sua consulta foi agendada com sucesso!", "success");
     await GetSchedules();
@@ -183,7 +193,7 @@ export default function Scheduling() {
                               >
                                 <button
                                   className="page-link"
-                                  onClick={(e) => setCurrentPage(index + 1)}
+                                  onClick={() => setCurrentPage(index + 1)}
                                 >
                                   {index + 1}
                                 </button>
@@ -256,6 +266,7 @@ export default function Scheduling() {
           </div>
         </form>
       </Modal>
+      <ToastContainer />
     </>
   );
 }
