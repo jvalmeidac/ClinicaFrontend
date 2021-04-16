@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import Navbar from "../../../components/Navbar";
 import ClipLoader from "react-spinners/ClipLoader";
+import { ToastContainer, toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 import User from "../../../assets/user.svg";
 import AuthContext from "../../../contexts/auth/AuthContext";
@@ -10,15 +12,30 @@ export default function Account() {
   const { decodedToken } = useContext(AuthContext);
 
   const [patient, setPatient] = useState({});
-  const [birthDate, setBirthDate] = useState(new Date());
   const [loading, setLoading] = useState(false);
 
-  function convertToDateString(date) {
-    if (date) {
-      const dateObj = date.split("T");
-      setBirthDate(dateObj[0]);
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    if (decodedToken) {
+      try {
+        const { data } = await api.put(
+          `patient/${decodedToken.unique_name}`,
+          patient
+        );
+        if (!data.success) {
+          toast.error(data.notifications[0].message);
+          return;
+        }
+        Swal.fire(
+          "Alterado com sucesso",
+          "Seus dados foram alterados com sucesso!",
+          "success"
+        );
+      } catch (e) {
+        alert(e.message);
+      }
     }
-    return null;
   }
 
   useEffect(() => {
@@ -28,7 +45,6 @@ export default function Account() {
           setLoading(true);
           const { data } = await api.get(`patient/${decodedToken.unique_name}`);
           setPatient(data.data);
-          convertToDateString(patient.birthDate);
           setLoading(false);
         } catch (err) {
           alert(err.message);
@@ -36,7 +52,7 @@ export default function Account() {
       }
     }
     GetPatient();
-  }, [decodedToken, patient.birthDate]);
+  }, [decodedToken]);
 
   return (
     <>
@@ -62,11 +78,14 @@ export default function Account() {
             alt="Usuário"
             className="mb-3"
           />
-          <form className="container">
+          <form onSubmit={handleSubmit} className="container">
             <legend>Dados pessoais</legend>
             <div className="row">
               <div className="col-lg-6 form-floating mb-3">
                 <input
+                  onChange={(e) =>
+                    setPatient({ ...patient, firstName: e.target.value })
+                  }
                   placeholder="Nome"
                   className="form-control"
                   id="inputFirstName"
@@ -82,6 +101,9 @@ export default function Account() {
               </div>
               <div className="col-lg-6 form-floating mb-3">
                 <input
+                  onChange={(e) =>
+                    setPatient({ ...patient, lastName: e.target.value })
+                  }
                   placeholder="Sobrenome"
                   className="form-control"
                   id="inputLastName"
@@ -99,6 +121,9 @@ export default function Account() {
             <div className="row">
               <div className="col-lg-6 form-floating mb-3">
                 <input
+                  onChange={(e) =>
+                    setPatient({ ...patient, email: e.target.value })
+                  }
                   placeholder="Email"
                   className="form-control"
                   id="inputEmail"
@@ -115,7 +140,7 @@ export default function Account() {
                   className="form-control"
                   id="inputBirthDate"
                   type="date"
-                  defaultValue={birthDate}
+                  defaultValue={patient.birthDate}
                   disabled
                 />
                 <label
@@ -130,11 +155,14 @@ export default function Account() {
             <div className="row">
               <div className="col-lg-6 form-floating mb-3">
                 <input
+                  onChange={(e) =>
+                    setPatient({ ...patient, address: e.target.value })
+                  }
                   placeholder="Endereço"
                   className="form-control"
                   id="inputAddress"
                   type="text"
-                  defaultValue={patient.firstName}
+                  defaultValue={patient.address}
                 />
                 <label
                   style={{ padding: "1rem 1.5rem" }}
@@ -145,11 +173,14 @@ export default function Account() {
               </div>
               <div className="col-lg-6 form-floating mb-3">
                 <input
+                  onChange={(e) =>
+                    setPatient({ ...patient, district: e.target.value })
+                  }
                   placeholder="Bairro"
                   className="form-control"
                   id="inputDistrict"
                   type="text"
-                  defaultValue={patient.lastName}
+                  defaultValue={patient.district}
                 />
                 <label
                   style={{ padding: "1rem 1.5rem" }}
@@ -159,9 +190,83 @@ export default function Account() {
                 </label>
               </div>
             </div>
+            <div className="row">
+              <div className="col-lg-6 form-floating mb-3">
+                <input
+                  onChange={(e) =>
+                    setPatient({ ...patient, cep: e.target.value })
+                  }
+                  placeholder="CEP"
+                  className="form-control"
+                  id="inputCep"
+                  type="text"
+                  defaultValue={patient.cep}
+                />
+                <label style={{ padding: "1rem 1.5rem" }} htmlFor="inputCep">
+                  CEP
+                </label>
+              </div>
+              <div className="col-lg-6 form-floating mb-3">
+                <input
+                  onChange={(e) =>
+                    setPatient({ ...patient, complement: e.target.value })
+                  }
+                  placeholder="Complemento"
+                  className="form-control"
+                  id="inputComplement"
+                  type="text"
+                  defaultValue={patient.complement}
+                />
+                <label
+                  style={{ padding: "1rem 1.5rem" }}
+                  htmlFor="inputComplement"
+                >
+                  Complemento
+                </label>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-lg-6 form-floating mb-3">
+                <input
+                  onChange={(e) =>
+                    setPatient({ ...patient, city: e.target.value })
+                  }
+                  placeholder="Cidade"
+                  className="form-control"
+                  id="inputCity"
+                  type="text"
+                  defaultValue={patient.city}
+                />
+                <label style={{ padding: "1rem 1.5rem" }} htmlFor="inputCity">
+                  Cidade
+                </label>
+              </div>
+              <div className="col-lg-6 form-floating mb-3">
+                <input
+                  onChange={(e) =>
+                    setPatient({ ...patient, state: e.target.value })
+                  }
+                  placeholder="Estado"
+                  className="form-control"
+                  id="inputState"
+                  type="text"
+                  defaultValue={patient.state}
+                />
+                <label style={{ padding: "1rem 1.5rem" }} htmlFor="inputState">
+                  Estado
+                </label>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <button className="btn btn-primary col-12 col-lg-4" type="submit">
+                Alterar Dados
+              </button>
+            </div>
           </form>
         </div>
       )}
+      <ToastContainer />
     </>
   );
 }

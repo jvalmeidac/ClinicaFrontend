@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { CpfMask } from "../../components/Masks";
 import api from "../../services/api";
 import cepApi from "../../services/cepApi";
 
@@ -21,9 +20,10 @@ export default function Register() {
   //Address Data
   const [cep, setCep] = useState("");
   const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
   const [district, setDistrict] = useState("");
   const [complement, setComplement] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
 
   const [loading, setLoading] = useState(false);
 
@@ -40,6 +40,12 @@ export default function Register() {
         birthDate,
         cpf,
         rg,
+        cep,
+        address,
+        district,
+        complement,
+        city,
+        state,
       });
       setLoading(false);
       if (!data.result.success) {
@@ -51,7 +57,6 @@ export default function Register() {
       alert(e);
     }
   }
-  console.log(gender);
   useEffect(() => {
     async function Get() {
       try {
@@ -59,6 +64,7 @@ export default function Register() {
         setAddress(data.address);
         setCity(data.city);
         setDistrict(data.district);
+        setState(data.state);
       } catch (e) {
         console.log(e);
       }
@@ -155,7 +161,15 @@ export default function Register() {
             </div>
             <div className="row">
               <div className="col-lg-6 form-floating mb-3">
-                <CpfMask onChange={(e) => setCpf(e.target.value)} />
+                <input
+                  onChange={(e) => setCpf(e.target.value)}
+                  autoComplete="off"
+                  required
+                  placeholder="Digite seu CPF"
+                  id="inputCpf"
+                  type="text"
+                  className="form-control"
+                />
                 <label style={{ padding: "1rem 1.5rem" }} htmlFor="inputCpf">
                   CPF
                 </label>
@@ -235,13 +249,13 @@ export default function Register() {
             <div className="row">
               <div className="col-lg-6 form-floating mb-3">
                 <input
+                  onChange={(e) => setCep(e.target.value)}
                   autoComplete="off"
                   required
                   placeholder="CEP"
                   id="inputCep"
+                  name="cep"
                   className="form-control"
-                  maxLength="8"
-                  onChange={(e) => setCep(e.target.value)}
                 />
                 <label style={{ padding: "1rem 1.5rem" }} htmlFor="inputCep">
                   CEP
@@ -288,24 +302,6 @@ export default function Register() {
               <div className="col-lg-6 form-floating mb-3">
                 <input
                   autoComplete="off"
-                  required
-                  placeholder="Cidade"
-                  id="inputCity"
-                  type="text"
-                  value={city}
-                  readOnly
-                  disabled
-                  className="form-control"
-                />
-                <label style={{ padding: "1rem 1.5rem" }} htmlFor="inputCity">
-                  Cidade
-                </label>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-lg-6 form-floating mb-3">
-                <input
-                  autoComplete="off"
                   placeholder="Complemento"
                   id="inputComplement"
                   type="text"
@@ -317,6 +313,36 @@ export default function Register() {
                   htmlFor="inputComplement"
                 >
                   Complemento
+                </label>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-lg-6 form-floating mb-3">
+                <input
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                  disabled
+                  placeholder="Cidade"
+                  className="form-control"
+                  id="inputCity"
+                  type="text"
+                />
+                <label style={{ padding: "1rem 1.5rem" }} htmlFor="inputCity">
+                  Cidade
+                </label>
+              </div>
+              <div className="col-lg-6 form-floating mb-3">
+                <input
+                  value={state}
+                  onChange={(e) => setState(e.target.value)}
+                  disabled
+                  placeholder="Estado"
+                  className="form-control"
+                  id="inputState"
+                  type="text"
+                />
+                <label style={{ padding: "1rem 1.5rem" }} htmlFor="inputState">
+                  Estado
                 </label>
               </div>
             </div>

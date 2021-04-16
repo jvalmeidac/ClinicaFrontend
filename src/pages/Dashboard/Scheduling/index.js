@@ -42,7 +42,24 @@ export default function Scheduling() {
 
   //Agendamento
   const [date, setDate] = useState(null);
-  const [time, setTime] = useState(null);
+  const [time, setTime] = useState("08:00");
+
+  const timetable = [
+    "08:00",
+    "09:00",
+    "10:00",
+    "11:00",
+    "12:00",
+    "14:00",
+    "15:00",
+    "16:00",
+    "17:00",
+    "18:00",
+    "19:00",
+    "20:00",
+    "21:00",
+    "22:00",
+  ];
 
   function openModal() {
     setIsOpen(true);
@@ -264,12 +281,19 @@ export default function Scheduling() {
             <label htmlFor="appointmentSchedule">Data</label>
           </div>
           <div className="form-floating mb-3">
-            <input
-              className="form-control"
-              type="time"
-              id="appointmentScheduleTime"
+            <select
               onChange={(e) => setTime(e.target.value)}
-            />
+              className="form-select"
+              id="appointmensScheduleTime"
+            >
+              {timetable.map((time, index) => {
+                return (
+                  <option key={index} value={time}>
+                    {time}
+                  </option>
+                );
+              })}
+            </select>
             <label htmlFor="appointmentScheduleTime">Horário</label>
           </div>
 
