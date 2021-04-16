@@ -7,11 +7,11 @@ import Scholar from "../../assets/dentist.svg";
 export default function Menu() {
   return (
     <>
-      <div className="main">
+      <div className="d-flex vw-100 vh-100 justify-content-center align-items-center">
         <div className="row">
           <div
             style={{ backgroundColor: "white" }}
-            className="col-lg col-12 rounded shadow m-lg-3 m-3 p-3 text-center"
+            className="col-12 mb-3 rounded shadow text-center"
           >
             <Link
               to="/dashboard/scheduling"
@@ -29,7 +29,7 @@ export default function Menu() {
           </div>
           <div
             style={{ backgroundColor: "white" }}
-            className="col-lg col-12 rounded shadow m-lg-3 m-3 p-3 text-center"
+            className="col-12 rounded shadow text-center"
           >
             <Link
               to="/"

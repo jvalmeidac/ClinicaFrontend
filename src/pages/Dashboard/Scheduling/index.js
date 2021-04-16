@@ -8,6 +8,8 @@ import AuthContext from "../../../contexts/auth/AuthContext";
 
 import api from "../../../services/api";
 
+import NoData from "../../../assets/empty-box.svg";
+
 import Navbar from "../../../components/Navbar";
 import StatusBadge from "../../../components/StatusBadge";
 
@@ -176,7 +178,7 @@ export default function Scheduling() {
                         >
                           <button
                             className="page-link"
-                            onClick={(e) => setCurrentPage(currentPage - 1)}
+                            onClick={() => setCurrentPage(currentPage - 1)}
                           >
                             Anterior
                           </button>
@@ -192,6 +194,7 @@ export default function Scheduling() {
                                 }`}
                               >
                                 <button
+                                  style={{ position: "static" }}
                                   className="page-link"
                                   onClick={() => setCurrentPage(index + 1)}
                                 >
@@ -207,7 +210,7 @@ export default function Scheduling() {
                         >
                           <button
                             className="page-link"
-                            onClick={(e) => setCurrentPage(currentPage + 1)}
+                            onClick={() => setCurrentPage(currentPage + 1)}
                           >
                             Próximo
                           </button>
@@ -216,7 +219,14 @@ export default function Scheduling() {
                     </div>
                   </div>
                 ) : (
-                  <p>Nenhuma consulta agendada</p>
+                  <div className="d-flex flex-column justfify-between align-items-center">
+                    <img
+                      className="img-fluid w-25"
+                      src={NoData}
+                      alt="Sem dados"
+                    />
+                    <p>Nenhuma consulta agendada</p>
+                  </div>
                 )}
               </>
             )}
@@ -230,11 +240,15 @@ export default function Scheduling() {
         style={customStyles}
       >
         <div className="d-flex justify-content-between">
-          <div className="col-10">
-            <h2>Preencha os dados</h2>
+          <div className="me-3">
+            <h3>Preencha os dados</h3>
           </div>
-          <div className="col-2 text-center">
-            <button className="btn btn-outline-danger" onClick={closeModal}>
+
+          <div>
+            <button
+              className="btn btn-outline-danger ml-3"
+              onClick={closeModal}
+            >
               <i className="bi bi-x"></i>
             </button>
           </div>

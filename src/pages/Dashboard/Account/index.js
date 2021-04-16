@@ -126,6 +126,39 @@ export default function Account() {
                 </label>
               </div>
             </div>
+            <legend>Endereço</legend>
+            <div className="row">
+              <div className="col-lg-6 form-floating mb-3">
+                <input
+                  placeholder="Endereço"
+                  className="form-control"
+                  id="inputAddress"
+                  type="text"
+                  defaultValue={patient.firstName}
+                />
+                <label
+                  style={{ padding: "1rem 1.5rem" }}
+                  htmlFor="inputAddress"
+                >
+                  Endereço
+                </label>
+              </div>
+              <div className="col-lg-6 form-floating mb-3">
+                <input
+                  placeholder="Bairro"
+                  className="form-control"
+                  id="inputDistrict"
+                  type="text"
+                  defaultValue={patient.lastName}
+                />
+                <label
+                  style={{ padding: "1rem 1.5rem" }}
+                  htmlFor="inputDistrict"
+                >
+                  Bairro
+                </label>
+              </div>
+            </div>
           </form>
         </div>
       )}

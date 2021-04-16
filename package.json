@@ -11,6 +11,7 @@
     "js-cookie": "^2.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-input-mask": "^2.0.4",
     "react-jwt": "^1.1.2",
     "react-modal": "^3.12.1",
     "react-router-dom": "^5.2.0",

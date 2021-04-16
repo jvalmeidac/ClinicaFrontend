@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import { CpfMask } from "../../components/Masks";
 import api from "../../services/api";
 import cepApi from "../../services/cepApi";
 
@@ -15,7 +16,7 @@ export default function Register() {
   const [rg, setRg] = useState("");
   const [birthDate, setBirthDate] = useState("");
   const [phone, setPhone] = useState("");
-  const [gender, setGender] = useState("NI");
+  const [gender, setGender] = useState("");
 
   //Address Data
   const [cep, setCep] = useState("");
@@ -154,15 +155,7 @@ export default function Register() {
             </div>
             <div className="row">
               <div className="col-lg-6 form-floating mb-3">
-                <input
-                  autoComplete="off"
-                  required
-                  placeholder="Digite seu CPF"
-                  id="inputCpf"
-                  type="text"
-                  className="form-control"
-                  onChange={(e) => setCpf(e.target.value)}
-                />
+                <CpfMask onChange={(e) => setCpf(e.target.value)} />
                 <label style={{ padding: "1rem 1.5rem" }} htmlFor="inputCpf">
                   CPF
                 </label>
