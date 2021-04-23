@@ -47,7 +47,7 @@ export default function Navbar(props) {
                   exact
                   activeClassName="navbar__link--active"
                   className="navbar__link"
-                  to="/dashboard/scheduling"
+                  to="/dashboard/patient/scheduling"
                 >
                   Agendamento
                 </NavLink>
@@ -56,7 +56,7 @@ export default function Navbar(props) {
                 <NavLink
                   activeClassName="navbar__link--active"
                   className="navbar__link"
-                  to="/dashboard/account"
+                  to="/dashboard/patient/account"
                 >
                   Minha conta
                 </NavLink>

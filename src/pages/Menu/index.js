@@ -14,7 +14,7 @@ export default function Menu() {
             className="col-12 mb-3 rounded shadow text-center"
           >
             <Link
-              to="/dashboard/scheduling"
+              to="/dashboard/patient/scheduling"
               style={{ textDecoration: "none", height: "100%" }}
               className="d-flex flex-column justify-content-between"
             >

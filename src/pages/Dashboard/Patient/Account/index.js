@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useContext } from "react";
-import Navbar from "../../../components/Navbar";
+import Navbar from "../../../../components/Navbar";
 import ClipLoader from "react-spinners/ClipLoader";
 import { ToastContainer, toast } from "react-toastify";
 import Swal from "sweetalert2";
 
-import User from "../../../assets/user.svg";
-import AuthContext from "../../../contexts/auth/AuthContext";
-import api from "../../../services/api";
+import User from "../../../../assets/user.svg";
+import AuthContext from "../../../../contexts/auth/AuthContext";
+import api from "../../../../services/api";
 
 export default function Account() {
   const { decodedToken } = useContext(AuthContext);
@@ -140,8 +140,7 @@ export default function Account() {
                   className="form-control"
                   id="inputBirthDate"
                   type="date"
-                  defaultValue={patient.birthDate}
-                  disabled
+                  defaultValue={String(patient.birthDate).split("T")[0]}
                 />
                 <label
                   style={{ padding: "1rem 1.5rem" }}

@@ -4,14 +4,14 @@ import Modal from "react-modal";
 import Swal from "sweetalert2";
 import { ToastContainer, toast } from "react-toastify";
 
-import AuthContext from "../../../contexts/auth/AuthContext";
+import AuthContext from "../../../../contexts/auth/AuthContext";
 
-import api from "../../../services/api";
+import api from "../../../../services/api";
 
-import NoData from "../../../assets/empty-box.svg";
+import NoData from "../../../../assets/empty-box.svg";
 
-import Navbar from "../../../components/Navbar";
-import StatusBadge from "../../../components/StatusBadge";
+import Navbar from "../../../../components/Navbar";
+import StatusBadge from "../../../../components/StatusBadge";
 
 Modal.setAppElement("#root");
 
