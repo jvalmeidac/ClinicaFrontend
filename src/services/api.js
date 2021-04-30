@@ -2,7 +2,7 @@ import axios from "axios";
 require("dotenv").config();
 
 const api = axios.create({
-  baseURL: "https://localhost:44319/api/",
+  baseURL: "https://clinicafranscicoesteves.azurewebsites.net/api/",
   headers: {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
