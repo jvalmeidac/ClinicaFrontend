@@ -5,9 +5,5 @@ div.main {
 
   width: 100vw;
   height: 100vh;
-  background-image: linear-gradient(
-    to left,
-    rgba(255, 0, 0, 0),
-    rgba(255, 0, 0, 1)
-  );
+  background-color: #e2e2e2;
 }

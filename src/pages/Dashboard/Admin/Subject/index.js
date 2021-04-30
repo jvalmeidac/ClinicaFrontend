@@ -191,16 +191,16 @@ export default function Subject() {
                 onChange={(e) =>
                   setSubject({
                     ...subject,
-                    weekDay: Number(e.target.value),
+                    weekDay: e.target.value,
                   })
                 }
               >
-                <option value="0">Segunda-Feira</option>
-                <option value="1">Terça-Feira</option>
-                <option value="2">Quarta-Feira</option>
-                <option value="3">Quinta-Feira</option>
-                <option value="4">Sexta-Feira</option>
-                <option value="5">Sábado</option>
+                <option value={1}>Segunda-Feira</option>
+                <option value={2}>Terça-Feira</option>
+                <option value={3}>Quarta-Feira</option>
+                <option value={4}>Quinta-Feira</option>
+                <option value={5}>Sexta-Feira</option>
+                <option value={6}>Sábado</option>
               </select>
               <label htmlFor="selectWeekDay">Dia da Semana</label>
             </div>
@@ -212,13 +212,13 @@ export default function Subject() {
                 onChange={(e) =>
                   setSubject({
                     ...subject,
-                    dayPeriod: Number(e.target.value),
+                    dayPeriod: e.target.value,
                   })
                 }
               >
-                <option value="0">Manhã</option>
-                <option value="1">Tarde</option>
-                <option value="2">Noite</option>
+                <option value={1}>Manhã</option>
+                <option value={2}>Tarde</option>
+                <option value={3}>Noite</option>
               </select>
               <label htmlFor="selectDayPeriod">Período do Dia</label>
             </div>

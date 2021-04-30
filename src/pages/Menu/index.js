@@ -7,7 +7,7 @@ import Scholar from "../../assets/dentist.svg";
 export default function Menu() {
   return (
     <>
-      <div className="d-flex vw-100 vh-100 justify-content-center align-items-center">
+      <div className="main d-flex vw-100 vh-100 justify-content-center align-items-center">
         <div className="row">
           <div
             style={{ backgroundColor: "white" }}

@@ -49,7 +49,10 @@ export default function Register() {
       });
       setLoading(false);
       if (!data.result.success) {
-        toast.error(data.result.notifications[0].message);
+        toast.error(data.result.notifications[0].message, {
+          position: toast.POSITION.TOP_RIGHT,
+          className: "m-1",
+        });
         return;
       }
       <Redirect to="/login" />;
@@ -57,6 +60,7 @@ export default function Register() {
       alert(e);
     }
   }
+
   useEffect(() => {
     async function Get() {
       try {
@@ -165,6 +169,7 @@ export default function Register() {
                   onChange={(e) => setCpf(e.target.value)}
                   autoComplete="off"
                   required
+                  maxLength="11"
                   placeholder="Digite seu CPF"
                   id="inputCpf"
                   type="text"
@@ -179,6 +184,7 @@ export default function Register() {
                   autoComplete="off"
                   required
                   placeholder="Registro Geral"
+                  maxLength="13"
                   id="inputRg"
                   type="text"
                   className="form-control"
@@ -195,6 +201,7 @@ export default function Register() {
                   autoComplete="off"
                   required
                   placeholder="Digite seu telefone"
+                  maxLength="11"
                   id="inputPhone"
                   type="text"
                   className="form-control"

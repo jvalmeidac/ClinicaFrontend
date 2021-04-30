@@ -40,18 +40,12 @@ export default function Academic() {
     e.preventDefault();
 
     try {
-      const { data } = await api.post(`academic/`, academic, {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        },
-      });
+      const { data } = await api.post(`academic/`, academic, {});
       if (data.sucess === false) {
         alert(`Ocorreu um erro. Erro: ${data.notifications[0].message}`);
         return;
       }
       alert("Acadêmico registrado com sucesso!");
-      setModalIsOpen(false);
       await getAcademics();
     } catch (e) {
       alert(e);
@@ -110,7 +104,9 @@ export default function Academic() {
                     </thead>
                     <tbody>
                       {academics.map((academic) => {
-                        const formatedDate = new Date(academic.createdAt);
+                        const formatedDate = new Date(
+                          academic.createdAt
+                        ).toLocaleString();
 
                         return (
                           <tr key={academic.idAcademic} className="text-center">
@@ -118,7 +114,7 @@ export default function Academic() {
                             <td>{academic.lastName}</td>
                             <td>{academic.email}</td>
                             <td>{academic.registration}</td>
-                            <td>{formatedDate.toLocaleString()}</td>
+                            <td>{formatedDate}</td>
                           </tr>
                         );
                       })}

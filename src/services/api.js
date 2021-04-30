@@ -2,7 +2,11 @@ import axios from "axios";
 require("dotenv").config();
 
 const api = axios.create({
-  baseURL: "https://clinicafranscicoesteves.azurewebsites.net/api/",
+  baseURL: "https://localhost:44319/api/",
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+  },
 });
 
 api.interceptors.request.use(async (response) => {

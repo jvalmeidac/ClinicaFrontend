@@ -197,6 +197,7 @@ export default function Account() {
                   }
                   placeholder="CEP"
                   className="form-control"
+                  maxLength="8"
                   id="inputCep"
                   type="text"
                   defaultValue={patient.cep}
@@ -243,16 +244,20 @@ export default function Account() {
               <div className="col-lg-6 form-floating mb-3">
                 <input
                   onChange={(e) =>
-                    setPatient({ ...patient, state: e.target.value })
+                    setPatient({
+                      ...patient,
+                      state: String(e.target.value).toUpperCase(),
+                    })
                   }
-                  placeholder="Estado"
+                  placeholder="Estado (Sigla)"
                   className="form-control"
+                  maxLength="2"
                   id="inputState"
                   type="text"
                   defaultValue={patient.state}
                 />
                 <label style={{ padding: "1rem 1.5rem" }} htmlFor="inputState">
-                  Estado
+                  Estado (Sigla)
                 </label>
               </div>
             </div>

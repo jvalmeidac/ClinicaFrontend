@@ -1,43 +1,39 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
-import api from "../../services/api";
+import api from "../../../../services/api";
 
-import AuthContext from "../../contexts/auth/AuthContext";
+import AuthContext from "../../../../contexts/auth/AuthContext";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import Logo from "../../assets/logo.png";
-
-import "./styles.css";
+import Logo from "../../../../assets/logo.png";
 
 export default function Login() {
   const { setToken } = useContext(AuthContext);
   const history = useHistory();
 
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [login, setLogin] = useState({
+    user: "",
+    password: "",
+  });
   const [loading, setLoading] = useState(false);
 
   async function handleLogin(e) {
     e.preventDefault();
     setLoading(true);
     try {
-      const { data } = await api.post("patient/auth/", { email, password });
+      const { data } = await api.post("admin/auth/", login);
       if (data.authenticated === false) {
-        toast.error("Email ou senha inválidos!", {
-          position: toast.POSITION.TOP_RIGHT,
-          className: "m-1",
-        });
+        toast.error("Usuário ou senha inválidos!");
         setLoading(false);
         return;
       }
       setToken(data.accessToken);
       setLoading(false);
-      history.push("/dashboard/patient/scheduling");
+      history.push("/admin/subject");
     } catch (e) {
-      toast.error(e, { position: toast.POSITION.TOP_RIGHT, className: "m-1" });
+      toast.error(e);
     }
   }
 
@@ -58,13 +54,13 @@ export default function Login() {
             <input
               autoComplete="off"
               required
-              placeholder="exemplo@email.com"
-              id="inputEmail"
-              type="email"
+              placeholder="Usuário"
+              id="inputuser"
+              type="text"
               className="form-control"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setLogin({ ...login, user: e.target.value })}
             />
-            <label htmlFor="inputEmail">Email</label>
+            <label htmlFor="inputuser">Usuário</label>
           </div>
           <div className="form-floating mt-3 mb-3">
             <input
@@ -73,15 +69,12 @@ export default function Login() {
               type="password"
               className="form-control"
               placeholder="Digite sua senha"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setLogin({ ...login, password: e.target.value })}
             />
             <label htmlFor="inputPassword">Senha</label>
           </div>
 
           <div>
-            <p className="text-center">
-              Não tem uma conta? Crie uma <Link to="/signup">aqui!</Link>
-            </p>
             {loading ? (
               <button
                 className="btn btn-primary col-12 align-middle"
