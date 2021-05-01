@@ -1,8 +1,10 @@
 import axios from "axios";
-require("dotenv").config();
 
 const api = axios.create({
-  baseURL: "https://clinicafranscicoesteves.azurewebsites.net/api/",
+  baseURL:
+    process.env.NODE_ENV === "development"
+      ? "https://localhost:44319/api/"
+      : process.env.REACT_APP_API_ENDPOINT,
   headers: {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
