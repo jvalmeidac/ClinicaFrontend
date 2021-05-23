@@ -12,11 +12,17 @@ import Subject from "../pages/Dashboard/Admin/Subject";
 import Academic from "../pages/Dashboard/Admin/Academic";
 import AdminLogin from "../pages/Dashboard/Admin/Login";
 
+//Acadêmico
+import AcademicLogin from "../pages/Dashboard/Academic/Login";
+import Schedulings from "../pages/Dashboard/Academic/Schedulings";
+import ClosedSchedules from "../pages/Dashboard/Academic/ClosedSchedules";
+
 const Routes = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={() => <Menu />} />
       <Route path="/login/" component={() => <Login />} />
+      <Route path="/academic/login/" component={() => <AcademicLogin />} />
       <Route path="/admin/login/" component={() => <AdminLogin />} />
       <Route path="/signup/" component={() => <Register />} />
       <PrivateRoute
@@ -33,6 +39,16 @@ const Routes = () => (
         path={"/admin/subject"}
         component={() => <Subject />}
         to={"/admin/login"}
+      />
+      <PrivateRoute
+        to={"/academic/login/"}
+        path="/dashboard/academic/schedulings"
+        component={() => <Schedulings />}
+      />
+      <PrivateRoute
+        to={"/academic/login/"}
+        path="/dashboard/academic/closedschedules"
+        component={() => <ClosedSchedules />}
       />
       <PrivateRoute path="/admin/academic" component={() => <Academic />} />
       <Route path="*" component={() => <h1>Page not found</h1>} />

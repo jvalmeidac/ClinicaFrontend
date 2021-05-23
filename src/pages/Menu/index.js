@@ -32,7 +32,7 @@ export default function Menu() {
             className="col-12 rounded shadow text-center"
           >
             <Link
-              to="/"
+              to="/dashboard/academic/schedulings"
               style={{ textDecoration: "none", height: "100%" }}
               className="d-flex flex-column justify-content-between"
             >

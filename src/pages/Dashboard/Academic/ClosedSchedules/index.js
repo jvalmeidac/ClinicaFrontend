@@ -1,23 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import StatusBadge from "../../../../components/StatusBadge";
 import Header from "../../../../components/Admin/Header";
 import api from "../../../../services/api";
+import AuthContext from "../../../../contexts/auth/AuthContext";
 
 export default function Scheduling() {
+  const { decodedToken } = useContext(AuthContext);
   const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
     async function getOpenedSchedules() {
       try {
-        const { data } = await api.get(`academic/a/`);
+        const { data } = await api.get(`academic/${decodedToken.unique_name}`);
         setAppointments(data.data);
       } catch (e) {
         alert(e.message);
       }
     }
-    getOpenedSchedules();
-  }, []);
+    if (decodedToken) getOpenedSchedules();
+  }, [decodedToken]);
 
   console.log(appointments);
 
@@ -51,14 +53,14 @@ export default function Scheduling() {
               </ul>
             </div>
             <div className="col-lg-8">
-              {appointments ? (
+              {appointments.length > 0 ? (
                 <table className="col-12 table table-bordered border-primary table-hover">
                   <thead>
                     <tr className="text-center">
                       <th scope="col">Agendamento</th>
                       <th scope="col">Paciente</th>
                       <th scope="col">Status</th>
-                      <th scope="col">Realizada</th>
+                      <th scope="col">Descrição</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -80,14 +82,9 @@ export default function Scheduling() {
                             />
                           </td>
                           <td>
-                            <div className="form-check">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                value=""
-                                id="flexCheckDefault"
-                              />
-                            </div>
+                            <button className="btn btn-primary">
+                              Adicionar descrição
+                            </button>
                           </td>
                         </tr>
                       );
@@ -95,9 +92,9 @@ export default function Scheduling() {
                   </tbody>
                 </table>
               ) : (
-                <>
-                  <h3>Carregando</h3>
-                </>
+                <div className="text-center mt-5">
+                  <h3>Nenhuma consulta realizada!</h3>
+                </div>
               )}
             </div>
           </div>
